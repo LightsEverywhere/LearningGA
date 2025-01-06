@@ -1,0 +1,22 @@
+{
+	"FileVersion": 3,
+	"EngineAssociation": "{9ED79AC7-4972-8A70-60A8-808DBFB3C3A7}",
+	"Category": "",
+	"Description": "",
+	"Modules": [
+		{
+			"Name": "LearningGA",
+			"Type": "Runtime",
+			"LoadingPhase": "Default"
+		}
+	],
+	"Plugins": [
+		{
+			"Name": "ModelingToolsEditorMode",
+			"Enabled": true,
+			"TargetAllowList": [
+				"Editor"
+			]
+		}
+	]
+}
