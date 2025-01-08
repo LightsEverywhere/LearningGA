@@ -9,6 +9,7 @@
 
 #include "LearningGAPlayerState.generated.h"
 
+class ULearningGAAbilitySystemComponent;
 /**
  * 
  */
@@ -18,10 +19,13 @@ class LEARNINGGA_API ALearningGAPlayerState : public APlayerState, public IAbili
 	GENERATED_BODY()
 
 public:
-	//UPROPERTY()
-	//UAbi
 	
 	virtual UAbilitySystemComponent* GetAbilitySystemComponent() const override;
+
+
+public:
+	UPROPERTY(VisibleDefaultsOnly, BlueprintReadOnly, Catagory = "Abilities")
+	ULearningGAAbilitySystemComponent* LearningGAAbilitySystemComponent;
 	
 	
 };

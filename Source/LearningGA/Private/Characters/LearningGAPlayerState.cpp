@@ -2,7 +2,12 @@
 
 
 #include "Characters/LearningGAPlayerState.h"
+#include "AbilitySystem/LearningGAAbilitySystemComponent.h"
 
 
 
 
+UAbilitySystemComponent* ALearningGAPlayerState::GetAbilitySystemComponent() const
+{
+	return LearningGAAbilitySystemComponent;
+}
