@@ -18,13 +18,15 @@ class LEARNINGGA_API ALearningGAPlayerState : public APlayerState, public IAbili
 {
 	GENERATED_BODY()
 
+	ALearningGAPlayerState();
+
 public:
 	
 	virtual UAbilitySystemComponent* GetAbilitySystemComponent() const override;
 
 
 public:
-	UPROPERTY(VisibleDefaultsOnly, BlueprintReadOnly, Catagory = "Abilities")
+	UPROPERTY(VisibleDefaultsOnly, BlueprintReadOnly, Category = "Abilities")
 	ULearningGAAbilitySystemComponent* LearningGAAbilitySystemComponent;
 	
 	

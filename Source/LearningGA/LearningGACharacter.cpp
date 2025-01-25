@@ -11,6 +11,12 @@
 #include "EnhancedInputSubsystems.h"
 #include "InputActionValue.h"
 
+// GA Learning
+#include "Characters/LearningGAPlayerState.h"
+#include "GameplayTagContainer.h"
+#include "LearningGAGameplayTags.h"
+#include "AbilitySystem/LearningGAAbilitySystemComponent.h"
+
 DEFINE_LOG_CATEGORY(LogTemplateCharacter);
 
 //////////////////////////////////////////////////////////////////////////
@@ -54,10 +60,41 @@ ALearningGACharacter::ALearningGACharacter()
 	// are set in the derived blueprint asset named ThirdPersonCharacter (to avoid direct content references in C++)
 }
 
+UAbilitySystemComponent* ALearningGACharacter::GetAbilitySystemComponent() const
+{
+	return LearningGAAbilitySystemComponent;
+}
+
+void ALearningGACharacter::InitAbilitySystemInfo()
+{
+	
+	if (ALearningGAPlayerState* LearningGAPlayerState = GetPlayerState<ALearningGAPlayerState>())
+	{
+		LearningGAAbilitySystemComponent = Cast<ULearningGAAbilitySystemComponent>(LearningGAPlayerState->GetAbilitySystemComponent());
+		UE_LOG(LogTemp, Log, TEXT("ALearningGACharacter.InitAbilitySystemInfo:Get LearningGAAbilitySystemComponent Succeed."));
+	}
+	UE_LOG(LogTemp, Log, TEXT("ALearningGACharacter.InitAbilitySystemInfo:InitAbilitySystemInfo Execute."));
+}
+
 void ALearningGACharacter::BeginPlay()
 {
 	// Call the base class  
 	Super::BeginPlay();
+
+	InitAbilitySystemInfo();
+
+	if (!LearningGAAbilitySystemComponent) { UE_LOG(LogTemp, Log, TEXT("ALearningGACharacter.BeginPlay:LearningGAAbilitySystemComponent invalid.")); return; }
+
+	if (LearningGAAbilitySystemComponent->TryActivateAbilitiesByTag(FGameplayTagContainer(LearningGAGameplayTags::Player_Ability_TestAttack)))
+	{
+		UE_LOG(LogTemp, Log, TEXT("ALearningGACharacter.BeginPlay:TryActivateAbilitiesByTag Succeed."));
+	}
+	else
+	{
+		UE_LOG(LogTemp, Log, TEXT("ALearningGACharacter.BeginPlay:TryActivateAbilitiesByTag Failed."));
+	}
+	
+
 }
 
 //////////////////////////////////////////////////////////////////////////

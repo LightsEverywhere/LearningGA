@@ -7,6 +7,14 @@
 
 
 
+ALearningGAPlayerState::ALearningGAPlayerState()
+{
+	LearningGAAbilitySystemComponent = CreateDefaultSubobject<ULearningGAAbilitySystemComponent>(TEXT("LearningGAAbilitySystemComponent"));
+
+	LearningGAAbilitySystemComponent->SetIsReplicated(true);
+	LearningGAAbilitySystemComponent->SetReplicationMode(EGameplayEffectReplicationMode::Mixed);
+}
+
 UAbilitySystemComponent* ALearningGAPlayerState::GetAbilitySystemComponent() const
 {
 	return LearningGAAbilitySystemComponent;

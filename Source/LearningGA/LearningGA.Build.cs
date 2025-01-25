@@ -16,7 +16,9 @@ public class LearningGA : ModuleRules
 				"Engine", 
 				"InputCore", 
 				"EnhancedInput", 
-				"GameplayAbilities"
-			});
+				"GameplayAbilities",
+                "GameplayTasks",
+                "GameplayTags"
+            });
 	}
 }

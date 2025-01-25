@@ -5,6 +5,7 @@
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
 #include "Logging/LogMacros.h"
+#include "AbilitySystemInterface.h"
 #include "LearningGACharacter.generated.h"
 
 class USpringArmComponent;
@@ -13,10 +14,12 @@ class UInputMappingContext;
 class UInputAction;
 struct FInputActionValue;
 
+class ULearningGAAbilitySystemComponent;
+
 DECLARE_LOG_CATEGORY_EXTERN(LogTemplateCharacter, Log, All);
 
 UCLASS(config=Game)
-class ALearningGACharacter : public ACharacter
+class ALearningGACharacter : public ACharacter, public IAbilitySystemInterface
 {
 	GENERATED_BODY()
 
@@ -46,6 +49,14 @@ class ALearningGACharacter : public ACharacter
 
 public:
 	ALearningGACharacter();
+
+// GA
+	UPROPERTY(BlueprintReadWrite)
+	ULearningGAAbilitySystemComponent* LearningGAAbilitySystemComponent = nullptr;
+
+	virtual UAbilitySystemComponent* GetAbilitySystemComponent() const override;
+
+	void InitAbilitySystemInfo();
 	
 
 protected:
